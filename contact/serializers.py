@@ -15,4 +15,12 @@ class ContactRequestSerializer(serializers.ModelSerializer):
             'status',
             'created_at',
         ]
-        read_only_fields = ['id', 'status', 'created_at']
+        read_only_fields = ['id', 'created_at']
+        extra_kwargs = {
+            'full_name': {'required': True, 'allow_blank': False},
+            'email': {'required': True, 'allow_blank': False},
+            'phone_number': {'required': True, 'allow_blank': False},
+            'address': {'required': True, 'allow_blank': False},
+            'message': {'required': True, 'allow_blank': False},
+            'date_requested': {'required': True},
+        }
