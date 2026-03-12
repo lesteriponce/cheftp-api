@@ -1,13 +1,17 @@
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import generics
-from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema
 from .models import ContactRequest
 from .serializers import ContactRequestSerializer
 
 class ContactRequestCreateView(APIView):
 
+    @extend_schema(
+        request=ContactRequestSerializer,
+        responses={201: ContactRequestSerializer},
+        description="Submit a Contact Us form request"
+    )
     def post(self, request):
         serializer = ContactRequestSerializer(data=request.data)
         if serializer.is_valid():
