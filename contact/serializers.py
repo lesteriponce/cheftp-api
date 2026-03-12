@@ -15,7 +15,7 @@ class ContactRequestSerializer(serializers.ModelSerializer):
             'status',
             'created_at',
         ]
-        read_only_fields = ['id', 'created_at']
+        read_only_fields = ['id', 'status', 'created_at']
         extra_kwargs = {
             'full_name': {'required': True, 'allow_blank': False},
             'email': {'required': True, 'allow_blank': False},
